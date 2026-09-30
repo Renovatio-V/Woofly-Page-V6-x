@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #e8f0ee 0%, #f7f2ef 60%, #fdeae3 100%);
+  background: linear-gradient(135deg, #e8f0ee 30%, #f7f2ef 60%, #fdeae3 100%);
 }
 .login-card {
   background: var(--blanco);

@@ -1,6 +1,14 @@
 /* ========================
    PERFIL PAGE
    ======================== */
+:root {
+  --perfil-verde: #527A61;
+  --perfil-verde-hover: #456A53;
+}
+
+body { background: #F1F6F0; }
+.app-header { background: var(--perfil-verde); }
+
 .tab-bar { display: flex; gap: 10px; margin-bottom: 28px; }
 .tab-btn {
   padding: 10px 22px; border-radius: var(--radio);
@@ -8,13 +16,16 @@
   font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500;
   cursor: pointer; transition: all var(--trans);
 }
-.tab-btn.active { background: var(--terracota); border-color: var(--terracota); color: white; }
+.tab-btn.active { background: var(--perfil-verde); border-color: var(--perfil-verde); color: white; }
 .tab-btn:not(.active):hover { border-color: var(--verde); }
+.tab-btn.active:hover { background: var(--perfil-verde-hover); border-color: var(--perfil-verde-hover); }
 .tab-content { display: none; }
 .tab-content.active { display: block; animation: fadeUp .3s ease both; }
 
 .info-card { background: white; border-radius: var(--radio-lg); padding: 32px; box-shadow: var(--sombra); }
 .info-card-title { font-size: 18px; font-weight: 600; color: var(--azul); margin-bottom: 24px; }
+.btn-save { background: var(--perfil-verde); }
+.btn-save:hover { background: var(--perfil-verde-hover); }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .form-grid .full { grid-column: 1 / -1; }
 

@@ -29,6 +29,39 @@ body { background: #F1F7FA; }
   border: 1px solid #E3EDF2;
 }
 .dash-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(48,91,112,.14); border-color: #B9DCEB; }
+.dash-card-citas {
+  background: #F7F3FA;
+  border-color: #E2D6EA;
+  box-shadow: 0 6px 24px rgba(112,81,138,.08);
+}
+.dash-card-citas:hover { box-shadow: 0 12px 30px rgba(112,81,138,.16); border-color: #BDA8CF; }
+.dash-card-citas .dash-card-icon { background: #E8DDF0; }
+.dash-card-citas .dash-card-icon svg { color: #70518A; }
+.dash-card-citas .dash-card-title { color: #574267; }
+.dash-card-citas .dash-card-desc { color: #705B80; }
+
+.dash-card-historial {
+  background: #FFFAF8;
+  border-color: #F1D9CF;
+  box-shadow: 0 6px 24px rgba(153,79,56,.08);
+}
+.dash-card-historial:hover { box-shadow: 0 12px 30px rgba(153,79,56,.15); border-color: #DFAE9D; }
+.dash-card-historial .dash-card-icon { background: #FCE9E1; }
+.dash-card-historial .dash-card-icon svg { color: #B85F43; }
+.dash-card-historial .dash-card-title { color: #704638; }
+.dash-card-historial .dash-card-desc { color: #8A665A; }
+
+.dash-card-perfil {
+  background: #F4F8F5;
+  border-color: #D8E6DE;
+  box-shadow: 0 6px 24px rgba(82,122,97,.08);
+}
+.dash-card-perfil:hover { box-shadow: 0 12px 30px rgba(82,122,97,.15); border-color: #AACDBA; }
+.dash-card-perfil .dash-card-icon { background: #E3F1E9; }
+.dash-card-perfil .dash-card-icon svg { color: #527A61; }
+.dash-card-perfil .dash-card-title { color: #415C4B; }
+.dash-card-perfil .dash-card-desc { color: #5B756C; }
+
 .dash-card-icon {
   width: 56px; height: 56px; border-radius: var(--radio);
   display: flex; align-items: center; justify-content: center;
@@ -60,28 +93,6 @@ body { background: #F1F7FA; }
 }
 .tip-item:last-child { border-bottom: none; }
 .tip-item::before { content: '• '; color: #4F94B8; font-weight: 700; }
-
-/* Social inline panel */
-.social-inline {
-  background: var(--blanco); border: 1px solid #E3EDF2; border-radius: var(--radio-lg);
-  padding: 24px 20px; box-shadow: 0 6px 24px rgba(48,91,112,.08);
-  display: flex; flex-direction: column; align-items: center; gap: 16px;
-  min-width: 100px;
-}
-.social-inline-title { font-size: 13px; font-weight: 600; color: #567181; text-transform: uppercase; letter-spacing: .5px; }
-.social-inline-btns  { display: flex; flex-direction: column; gap: 10px; }
-.social-btn {
-  width: 42px; height: 42px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: white; cursor: pointer; border: none; text-decoration: none;
-  transition: transform var(--trans), opacity var(--trans);
-}
-.social-btn:hover { transform: scale(1.12); opacity: .9; }
-.s-fb { background: #1877F2; }
-.s-ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
-.s-tw { background: #1DA1F2; }
-.s-yt { background: #FF0000; }
-.s-em { background: #E1F0F8; color: var(--azul); }
 
 /* ========================
    STORIES SLIDESHOW
@@ -154,8 +165,6 @@ body { background: #F1F7FA; }
 @media (max-width: 900px) {
   .cards-grid-3 { grid-template-columns: 1fr; }
   .dash-bottom-row { flex-direction: column; }
-  .social-inline { flex-direction: row; min-width: unset; width: 100%; }
-  .social-inline-btns { flex-direction: row; }
   .story-card { flex: 0 0 calc(100% - 0px); }
 }
 @media (min-width: 901px) and (max-width: 1200px) {

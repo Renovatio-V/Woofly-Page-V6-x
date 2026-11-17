@@ -16,13 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+let loginInProgress = false;
+
 function doLogin() {
+  if (loginInProgress) return;
   const u = document.getElementById('loginUser').value.trim();
   const p = document.getElementById('loginPass').value.trim();
   if (!u || !p) { showToast('Ingresa usuario y contraseña', 'error'); return; }
+  loginInProgress = true;
   WF.login(u);
-  showToast('¡Bienvenido, ' + u + '!', 'success');
-  setTimeout(() => { window.location.href = 'pages/dashboard.html'; }, 700);
+  document.getElementById('page-login').classList.add('is-transitioning');
+  const transitionDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 850;
+  setTimeout(() => { window.location.href = 'pages/dashboard.html'; }, transitionDuration);
 }
 
 function togglePwd() {

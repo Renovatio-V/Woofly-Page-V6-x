@@ -2,6 +2,11 @@
    DASHBOARD PAGE
    ======================== */
 body { background: #F1F7FA; }
+.page-wrapper { animation: dashboardArrive .55s ease both; }
+@keyframes dashboardArrive {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .app-header {
   background: #CBE6F3;
   color: var(--azul);

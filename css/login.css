@@ -18,6 +18,54 @@
     radial-gradient(ellipse at 88% 82%, rgba(250,229,215,.8), transparent 34%);
   background-size: 128px 128px, auto, auto;
 }
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(125deg, #527A61, #76A68A 36%, #73AFCB 70%, #CBE6F3);
+  background-size: 220% 220%;
+  clip-path: circle(0 at 50% 50%);
+  visibility: hidden;
+  pointer-events: none;
+}
+.page-transition::before {
+  position: absolute;
+  inset: -35%;
+  background:
+    radial-gradient(ellipse at 30% 35%, rgba(255,255,255,.2), transparent 38%),
+    radial-gradient(ellipse at 75% 70%, rgba(250,229,215,.3), transparent 34%);
+  content: "";
+  animation: transitionGlow 7s ease-in-out infinite alternate;
+}
+.transition-content {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(14px);
+}
+.transition-brand {
+  font-size: clamp(32px, 8vw, 58px);
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+.transition-content > span:last-child {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .03em;
+}
+#page-login.is-transitioning .page-transition {
+  visibility: visible;
+  animation: dashboardReveal .85s cubic-bezier(.76, 0, .24, 1) forwards;
+}
+#page-login.is-transitioning .transition-content {
+  animation: transitionMessage .45s .35s ease both;
+}
 .login-card {
   background: rgba(255,255,255,.94);
   border: 1px solid rgba(82,122,97,.14);
@@ -26,22 +74,28 @@
   padding: 42px;
   width: 100%; max-width: 460px;
   display: flex; flex-direction: column; align-items: stretch;
+  text-align: center;
   animation: fadeUp .5s ease both;
 }
 .login-logo {
-  display: flex; align-items: center; gap: 14px;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
   margin-bottom: 36px;
 }
-.login-logo svg { width: 56px; height: 56px; flex-shrink: 0; }
+.login-logo svg {
+  width: 56px; height: 56px; flex-shrink: 0;
+  transform-origin: center;
+  animation: pawFloat 3.2s ease-in-out infinite;
+}
 .login-logo .brand { font-size: 26px; font-weight: 700; color: var(--login-ink); letter-spacing: -.5px; }
 .login-title { font-size: 29px; font-weight: 700; color: var(--login-ink); letter-spacing: -.6px; margin-bottom: 8px; }
 .login-sub { font-size: 14px; color: var(--login-muted); margin-bottom: 30px; line-height: 1.5; }
-.login-card .form-label { color: var(--login-ink); }
+.login-card .form-label { color: var(--login-ink); justify-content: center; }
 .login-card .form-label svg { color: var(--login-green); }
 .login-card .form-input {
   background: #F8FAF8;
   border-color: #DCE7DF;
   color: var(--login-ink);
+  text-align: center;
 }
 .login-card .form-input::placeholder { color: #87978C; }
 .login-card .form-input:focus {
@@ -73,6 +127,28 @@
 .login-card :is(.toggle-pwd, .btn-primary, .login-register):focus-visible {
   outline: 3px solid rgba(82,122,97,.35);
   outline-offset: 3px;
+}
+@keyframes pawFloat {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-5px) rotate(-4deg); }
+}
+@keyframes dashboardReveal {
+  0% { clip-path: circle(0 at 50% 50%); background-position: 0% 50%; }
+  55% { clip-path: circle(78% at 50% 50%); }
+  100% { clip-path: circle(150% at 50% 50%); background-position: 100% 50%; }
+}
+@keyframes transitionGlow {
+  from { transform: translate(-2%, -1%) scale(.96); }
+  to { transform: translate(2%, 1%) scale(1.04); }
+}
+@keyframes transitionMessage {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .login-logo svg,
+  .page-transition::before { animation: none; }
+  #page-login.is-transitioning .page-transition,
+  #page-login.is-transitioning .transition-content { animation: none; }
 }
 @media (max-width: 700px) {
   #page-login { padding: 20px 16px; }

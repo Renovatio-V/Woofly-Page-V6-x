@@ -44,12 +44,33 @@ const WF = {
   setState(data) {
     sessionStorage.setItem('woofly_state', JSON.stringify(data));
   },
+  getAccounts() {
+    const raw = sessionStorage.getItem('wf_accounts');
+    if (raw) return JSON.parse(raw);
+    const accounts = [{ name: 'Juan Pérez Martínez', username: 'Juan', password: 'woofly123' }];
+    sessionStorage.setItem('wf_accounts', JSON.stringify(accounts));
+    return accounts;
+  },
+  register(name, username, password) {
+    const accounts = this.getAccounts();
+    const normalizedUsername = username.trim().toLowerCase();
+    if (accounts.some(account => account.username.toLowerCase() === normalizedUsername)) return false;
+    accounts.push({ name: name.trim(), username: username.trim(), password });
+    sessionStorage.setItem('wf_accounts', JSON.stringify(accounts));
+    return true;
+  },
   isLoggedIn() {
     return sessionStorage.getItem('wf_logged') === 'true';
   },
-  login(user) {
+  login(username, password) {
+    const normalizedUsername = username.trim().toLowerCase();
+    const account = this.getAccounts().find(item =>
+      item.username.toLowerCase() === normalizedUsername && item.password === password
+    );
+    if (!account) return false;
     sessionStorage.setItem('wf_logged', 'true');
-    sessionStorage.setItem('wf_user', user);
+    sessionStorage.setItem('wf_user', account.name);
+    return true;
   },
   logout() {
     sessionStorage.removeItem('wf_logged');

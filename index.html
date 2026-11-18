@@ -38,31 +38,73 @@
   <h1 class="login-title">¡Bienvenido!</h1>
   <p class="login-sub">El cuidado que tu mascota merece</p>
 
-  <div class="form-group">
-    <label class="form-label" for="loginUser">
-      <i data-lucide="user" width="15" height="15"></i> Usuario
-    </label>
-    <div class="input-wrap">
-      <input class="form-input" id="loginUser" type="text" placeholder="Ingrese su usuario" value="Juan" />
+  <form id="loginForm">
+    <div class="form-group">
+      <label class="form-label" for="loginUser">
+        <i data-lucide="user" width="15" height="15"></i> Usuario
+      </label>
+      <div class="input-wrap">
+        <input class="form-input" id="loginUser" type="text" placeholder="Ingrese su usuario" value="Juan" autocomplete="username" required />
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label class="form-label" for="loginPass">
-      <i data-lucide="lock" width="15" height="15"></i> Contraseña
-    </label>
-    <div class="input-wrap">
-      <input class="form-input" id="loginPass" type="password" placeholder="Ingrese su contraseña" value="woofly123" />
-      <button class="toggle-pwd" type="button" onclick="togglePwd()">
-        <i data-lucide="eye" id="eyeIcon" width="18" height="18"></i>
-      </button>
+    <div class="form-group">
+      <label class="form-label" for="loginPass">
+        <i data-lucide="lock" width="15" height="15"></i> Contraseña
+      </label>
+      <div class="input-wrap">
+        <input class="form-input" id="loginPass" type="password" placeholder="Ingrese su contraseña" value="woofly123" autocomplete="current-password" required />
+        <button class="toggle-pwd" type="button" onclick="togglePwd()" aria-label="Mostrar contraseña">
+          <i data-lucide="eye" id="eyeIcon" width="18" height="18"></i>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <button class="btn-primary" onclick="doLogin()">Iniciar Sesión</button>
-  <button class="login-register" type="button" onclick="showToast('Registro próximamente disponible','info')">
+    <button class="btn-primary" type="submit">Iniciar Sesión</button>
+  </form>
+  <button class="login-register" id="openRegister" type="button" aria-haspopup="dialog" aria-controls="registerOverlay">
     ¿No tienes cuenta? Regístrate aquí
   </button>
+</div>
+
+<div class="register-overlay" id="registerOverlay" hidden aria-hidden="true">
+  <section class="register-card" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+    <button class="register-close" id="closeRegister" type="button" aria-label="Cerrar registro">
+      <i data-lucide="x" width="20" height="20"></i>
+    </button>
+    <div class="register-heading">
+      <div class="register-icon"><i data-lucide="user-round-plus" width="24" height="24"></i></div>
+      <h2 class="register-title" id="registerTitle">Crea tu cuenta</h2>
+      <p class="register-sub">Únete a Woofly y cuida mejor de tus mascotas.</p>
+    </div>
+    <form id="registerForm">
+      <div class="form-group">
+        <label class="form-label" for="registerName"><i data-lucide="user" width="15" height="15"></i> Nombre completo</label>
+        <input class="form-input" id="registerName" name="name" type="text" placeholder="Ej. María García" autocomplete="name" maxlength="80" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="registerUser"><i data-lucide="at-sign" width="15" height="15"></i> Usuario</label>
+        <input class="form-input" id="registerUser" name="username" type="text" placeholder="Elige un usuario" autocomplete="username" minlength="3" maxlength="30" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="registerPass"><i data-lucide="lock" width="15" height="15"></i> Contraseña</label>
+        <div class="register-password-wrap">
+          <input class="form-input" id="registerPass" name="password" type="password" autocomplete="new-password" minlength="8" aria-describedby="generatedPasswordHint" required />
+          <button class="register-password-toggle" type="button" data-target="registerPass" aria-label="Mostrar contraseña">Mostrar</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="registerConfirm"><i data-lucide="shield-check" width="15" height="15"></i> Confirmar contraseña</label>
+        <div class="register-password-wrap">
+          <input class="form-input" id="registerConfirm" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" aria-describedby="generatedPasswordHint" required />
+          <button class="register-password-toggle" type="button" data-target="registerConfirm" aria-label="Mostrar confirmación de contraseña">Mostrar</button>
+        </div>
+      </div>
+      <p class="register-password-help" id="generatedPasswordHint">Generamos tu contraseña automáticamente. Muéstrala y guárdala para poder iniciar sesión.</p>
+      <button class="btn-primary" type="submit">Crear cuenta</button>
+    </form>
+    <p class="register-login">¿Ya tienes cuenta? <button id="backToLogin" type="button">Inicia sesión</button></p>
+  </section>
 </div>
 
 <script src="js/shared.js"></script>

@@ -18,9 +18,8 @@ function switchTab(tabId, btn) {
 
 function loadPersonalData() {
   const user = WF.getUser();
-  // Pre-fill name with logged-in user
   const el = document.getElementById('pfNombre');
-  if (el && el.value === '') el.value = user;
+  if (el) el.value = user;
 }
 
 function renderPets() {
